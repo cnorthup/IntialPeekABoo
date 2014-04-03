@@ -22,6 +22,11 @@
 		56D41BA118EDDDFC0002A51A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B8518EDDDFC0002A51A /* CoreData.framework */; };
 		56D41BA918EDDDFC0002A51A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56D41BA718EDDDFC0002A51A /* InfoPlist.strings */; };
 		56D41BAB18EDDDFC0002A51A /* PeekABooTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BAA18EDDDFC0002A51A /* PeekABooTests.m */; };
+		56D41BB518EDDE890002A51A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56D41BB418EDDE890002A51A /* Storyboard.storyboard */; };
+		56D41BB818EDDF590002A51A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BB718EDDF590002A51A /* RootViewController.m */; };
+		56D41BBB18EDE8920002A51A /* UserColletionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BBA18EDE8920002A51A /* UserColletionViewCell.m */; };
+		56D41BBE18EDEC840002A51A /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BBD18EDEC840002A51A /* InfoViewController.m */; };
+		56D41BC118EDF5990002A51A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BC018EDF5990002A51A /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,15 @@
 		56D41BA618EDDDFC0002A51A /* PeekABooTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeekABooTests-Info.plist"; sourceTree = "<group>"; };
 		56D41BA818EDDDFC0002A51A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		56D41BAA18EDDDFC0002A51A /* PeekABooTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeekABooTests.m; sourceTree = "<group>"; };
+		56D41BB418EDDE890002A51A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		56D41BB618EDDF590002A51A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		56D41BB718EDDF590002A51A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		56D41BB918EDE8920002A51A /* UserColletionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserColletionViewCell.h; sourceTree = "<group>"; };
+		56D41BBA18EDE8920002A51A /* UserColletionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserColletionViewCell.m; sourceTree = "<group>"; };
+		56D41BBC18EDEC840002A51A /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		56D41BBD18EDEC840002A51A /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		56D41BBF18EDF5990002A51A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		56D41BC018EDF5990002A51A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +134,15 @@
 				56D41B9618EDDDFC0002A51A /* Images.xcassets */,
 				56D41B9318EDDDFC0002A51A /* PeekABoo.xcdatamodeld */,
 				56D41B8818EDDDFC0002A51A /* Supporting Files */,
+				56D41BB418EDDE890002A51A /* Storyboard.storyboard */,
+				56D41BBF18EDF5990002A51A /* User.h */,
+				56D41BC018EDF5990002A51A /* User.m */,
+				56D41BB618EDDF590002A51A /* RootViewController.h */,
+				56D41BB718EDDF590002A51A /* RootViewController.m */,
+				56D41BBC18EDEC840002A51A /* InfoViewController.h */,
+				56D41BBD18EDEC840002A51A /* InfoViewController.m */,
+				56D41BB918EDE8920002A51A /* UserColletionViewCell.h */,
+				56D41BBA18EDE8920002A51A /* UserColletionViewCell.m */,
 			);
 			path = PeekABoo;
 			sourceTree = "<group>";
@@ -230,6 +253,7 @@
 			files = (
 				56D41B8C18EDDDFC0002A51A /* InfoPlist.strings in Resources */,
 				56D41B9718EDDDFC0002A51A /* Images.xcassets in Resources */,
+				56D41BB518EDDE890002A51A /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,8 +272,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D41BBB18EDE8920002A51A /* UserColletionViewCell.m in Sources */,
+				56D41BC118EDF5990002A51A /* User.m in Sources */,
 				56D41B9218EDDDFC0002A51A /* AppDelegate.m in Sources */,
+				56D41BBE18EDEC840002A51A /* InfoViewController.m in Sources */,
 				56D41B8E18EDDDFC0002A51A /* main.m in Sources */,
+				56D41BB818EDDF590002A51A /* RootViewController.m in Sources */,
 				56D41B9518EDDDFC0002A51A /* PeekABoo.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

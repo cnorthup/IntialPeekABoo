@@ -7,13 +7,13 @@
 //
 
 #import "UserColletionViewCell.h"
+#import "User.h"
 
 @interface UserColletionViewCell()<UITableViewDelegate, UITableViewDataSource>
 {
     BOOL infoShown;
 }
 
-@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
 
 @end
@@ -37,51 +37,68 @@
     
     infoShown =! infoShown;
     if (infoShown) {
-        self.myTableView.frame = CGRectMake(0, 244, self.myTableView.frame.size.width, 239);
+        self.userInfoTableView.frame = CGRectMake(0, 244, self.userInfoTableView.frame.size.width, 239);
     }else{
-        self.myTableView.frame = CGRectMake(0, 483, self.myTableView.frame.size.width, 0);
+        self.userInfoTableView.frame = CGRectMake(0, 483, self.userInfoTableView.frame.size.width, 0);
     }
     
 }
 
 #pragma mark -- 3 Table View Delegate Methods
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor whiteColor]];
+    [header.textLabel setAlpha:1.0];
+    [header.textLabel setOpaque:NO];
+}
+
 //rows
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 2;
-    }
-    else if(section == 1){
-        return 3;
-    }
-    else{
-        return 2;
-    }
+    return 10;
+//    if (section == 0) {
+//        return 2;
+//    }
+//    else if(section == 1){
+//        return 3;
+//    }
+//    else{
+//        return 2;
+//    }
 }
 //cell
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"OverlayInfoCellID"];
+    
+
     return cell;
 }
 //header in section
--(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return @"Emails";
-    }
-    else if(section == 1){
-        return @"PhoneNumbers";
-    }
-    else{
-        return @"Address";
-    }
-}
+//-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    
+////    if (section == 0) {
+////        
+////        return @"Emails";
+////    }
+////    else if(section == 1){
+////        
+////        return @"PhoneNumbers";
+////    }
+////    else{
+////        
+////        return @"Address";
+////    }
+//}
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 3;
-}
+//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    //return 3;
+//}
 
 
 @end

@@ -6,17 +6,21 @@
 //  Copyright (c) 2014 MobileMakers. All rights reserved.
 //  UserCollectionCellID (reuse ID for collectionview)
 //  Table View reuse ID: TableViewCellID
+//http://nees.oregonstate.edu/killer_wave/wave.jpg (Marion's photo)
+//https://lh5.googleusercontent.com/-OE73C278Q00/AAAAAAAAAAI/AAAAAAAAAEY/Cvo6f_Kysog/photo.jpg (Steve's photo)
 
 #import "RootViewController.h"
 #import "UserColletionViewCell.h"
+#import "User.h"
 
 @interface RootViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
     BOOL zoomInMode;
     NSInteger rows;
     NSInteger columns;
-    NSArray* users;
+    NSArray* usersArray;
     NSArray* photos;
+   
     
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *myUserCollectionView;
@@ -41,23 +45,37 @@
     [super viewDidLoad];
     self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(68, 68);
     zoomInMode = NO;
-    //NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"json"];
-   // NSLog(@"%@", path);
-   // NSURL* url = [NSURL URLWithString:path];
-    NSURL* url = [[NSBundle mainBundle] URLForResource:@"users" withExtension:@"plist"];
-    users = [NSArray arrayWithContentsOfURL:url];
-    for (NSDictionary* user in users) {
-        NSDictionary* currentUser = user;
-        NSLog(@"%@", currentUser);
-    }
-    photos = @[[UIImage imageNamed:@"steve.jpg"], [UIImage imageNamed:@"wave.jpg"]];
-//    NSURLRequest* request = [NSURLRequest requestWithURL:url];
-//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-//        NSDictionary* users = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&connectionError];
-//        NSDictionary* user1 = users[@"User1"];
-//        NSLog(@"%@", user1);
-//    }];
+    photos = @[[UIImage imageNamed:@"wave.jpg"], [UIImage imageNamed:@"steve.jpg"]];
+    [self load];
+}
+
+-(void)load
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc]initWithEntityName:@"User"];
+    usersArray = [self.managedObjectContext executeFetchRequest:request error:nil];
+
     
+    //BOOL isFirstRun = ![[NSUserDefaults standardUserDefaults]boolForKey:@"hasRunOnce"];
+    BOOL isFirstRun = YES;
+    if (isFirstRun) {
+        //userdefaults get written in coredata and stored
+        NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
+        [userdefaults setBool:YES forKey:@"hasRunOnce"];
+        [userdefaults synchronize];
+        NSURL* url = [[NSBundle mainBundle] URLForResource:@"users" withExtension:@"plist"];
+        usersArray = [NSArray arrayWithContentsOfURL:url];
+        NSMutableArray *tempArray = [NSMutableArray new];
+        for (NSDictionary* currentUser in usersArray) {
+            User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+            user.name = currentUser[@"Name"];
+            user.personalEmail = currentUser[@"personalEmail"];
+            NSLog(@"%@", user.name);
+            [tempArray addObject:user];
+        }
+        usersArray = tempArray;
+        [self.managedObjectContext save:nil];
+    }
+    NSLog(@"%lu", (unsigned long)usersArray.count);
 }
 
 #pragma mark -- Collection View Delegate methods
@@ -69,7 +87,8 @@
 //number of items columns
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return users.count;
+    return usersArray.count;
+
 }
 //cell
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

@@ -58,6 +58,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="239" id="gLG-0Y-tay"/>
                                                     </constraints>
+                                                    <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <prototypes>
                                                         <tableViewCell alpha="0.29999999999999966" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OverlayInfoCellID" id="jTB-9e-SiS">
                                                             <rect key="frame" x="0.0" y="22" width="275" height="44"/>
@@ -91,8 +92,8 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="infoButton" destination="O7O-C6-ggh" id="eoH-z9-EuL"/>
-                                            <outlet property="myTableView" destination="ITB-qM-rqj" id="AYO-oS-sko"/>
                                             <outlet property="userImage" destination="klc-4L-Iev" id="4PP-x5-0p9"/>
+                                            <outlet property="userInfoTableView" destination="ITB-qM-rqj" id="nKN-s6-4jI"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

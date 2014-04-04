@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 
+@property (weak, nonatomic) IBOutlet UITableView *userInfoTableView;
 
 @end

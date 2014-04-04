@@ -92,6 +92,7 @@
                                         <connections>
                                             <outlet property="infoButton" destination="O7O-C6-ggh" id="eoH-z9-EuL"/>
                                             <outlet property="myTableView" destination="ITB-qM-rqj" id="AYO-oS-sko"/>
+                                            <outlet property="userImage" destination="klc-4L-Iev" id="4PP-x5-0p9"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

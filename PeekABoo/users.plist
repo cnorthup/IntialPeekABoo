@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>User2</key>
+<array>
 	<dict>
 		<key>Photo</key>
 		<string>http://nees.oregonstate.edu/killer_wave/wave.jpg</string>
@@ -23,7 +22,6 @@
 		<key>Name</key>
 		<string>Marion Ano</string>
 	</dict>
-	<key>User1</key>
 	<dict>
 		<key>Photo</key>
 		<string>https://lh5.googleusercontent.com/-OE73C278Q00/AAAAAAAAAAI/AAAAAAAAAEY/Cvo6f_Kysog/photo.jpg</string>
@@ -44,5 +42,5 @@
 		<key>Name</key>
 		<string>Steve Toosevich</string>
 	</dict>
-</dict>
+</array>
 </plist>

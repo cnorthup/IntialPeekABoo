@@ -15,6 +15,8 @@
     BOOL zoomInMode;
     NSInteger rows;
     NSInteger columns;
+    NSArray* users;
+    NSArray* photos;
     
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *myUserCollectionView;
@@ -39,8 +41,22 @@
     [super viewDidLoad];
     self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(68, 68);
     zoomInMode = NO;
-    rows = 2;
-    columns = 4;
+    //NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"json"];
+   // NSLog(@"%@", path);
+   // NSURL* url = [NSURL URLWithString:path];
+    NSURL* url = [[NSBundle mainBundle] URLForResource:@"users" withExtension:@"plist"];
+    users = [NSArray arrayWithContentsOfURL:url];
+    for (NSDictionary* user in users) {
+        NSDictionary* currentUser = user;
+        NSLog(@"%@", currentUser);
+    }
+    photos = @[[UIImage imageNamed:@"steve.jpg"], [UIImage imageNamed:@"wave.jpg"]];
+//    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+//    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//        NSDictionary* users = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&connectionError];
+//        NSDictionary* user1 = users[@"User1"];
+//        NSLog(@"%@", user1);
+//    }];
     
 }
 
@@ -48,18 +64,19 @@
 //section rows
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return rows;
+    return 1;
 }
 //number of items columns
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return columns;
+    return users.count;
 }
 //cell
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
      UserColletionViewCell* cell = (UserColletionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"UserCollectionCellID" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor darkGrayColor];
+    cell.userImage.image = photos[indexPath.row];
     if (!zoomInMode) {
         cell.infoButton.hidden = YES;
     }
@@ -76,15 +93,11 @@
     if (zoomInMode)
     {
         self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(275, 483);
-        rows = 8;
-        columns = 1;
         
     }
     else
     {
         self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(68, 68);
-        rows = 2;
-        columns = 4;
     }
     [self.myUserCollectionView reloadData];
 

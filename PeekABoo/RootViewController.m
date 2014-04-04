@@ -62,12 +62,11 @@
     cell.backgroundColor = [UIColor darkGrayColor];
     if (!zoomInMode) {
         cell.infoButton.hidden = YES;
-        cell.editButton.hidden = YES;
     }
     else{
         cell.infoButton.hidden = NO;
-        cell.editButton.hidden = NO;
     }
+    //cell.myTableView.frame = CGRectMake(0, 483, cell.myTableView.frame.size.width, 0);
     return cell;
 }
 
@@ -90,6 +89,7 @@
     [self.myUserCollectionView reloadData];
 
 }
+
 
 /*
 #pragma mark - Navigation

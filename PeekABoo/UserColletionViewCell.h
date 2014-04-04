@@ -10,6 +10,6 @@
 
 @interface UserColletionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (weak, nonatomic) IBOutlet UIButton *editButton;
+
 
 @end

@@ -6,7 +6,7 @@
         <attribute name="homeNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="personalEmail" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photo" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workNumber" optional="YES" attributeType="String" syncable="YES"/>

@@ -13,7 +13,7 @@
 @interface User : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) id photo;
+@property (nonatomic, retain) NSString * photo;
 @property (nonatomic, retain) NSString * workNumber;
 @property (nonatomic, retain) NSString * cellNumber;
 @property (nonatomic, retain) NSString * homeNumber;

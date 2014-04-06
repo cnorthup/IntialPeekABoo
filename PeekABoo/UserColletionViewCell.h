@@ -6,12 +6,14 @@
 //  Copyright (c) 2014 MobileMakers. All rights reserved.
 //
 
+#import "InfoTableView.h"
 #import <UIKit/UIKit.h>
 
 @interface UserColletionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 
-@property (weak, nonatomic) IBOutlet UITableView *userInfoTableView;
+@property (weak, nonatomic) IBOutlet UIButton *fakeEditButton;
+@property (weak, nonatomic) IBOutlet InfoTableView *userInfoTableView;
 
 @end

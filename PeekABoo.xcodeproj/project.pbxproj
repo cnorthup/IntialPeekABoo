@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56A024BC18EF5DA2000E397D /* InfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024BB18EF5DA2000E397D /* InfoTableView.m */; };
+		56A024BE18F08C4A000E397D /* users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56A024BD18F08C4A000E397D /* users.plist */; };
+		56A024C418F08F85000E397D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024C318F08F85000E397D /* User.m */; };
 		56D41B8018EDDDFC0002A51A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B7F18EDDDFC0002A51A /* Foundation.framework */; };
 		56D41B8218EDDDFC0002A51A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B8118EDDDFC0002A51A /* CoreGraphics.framework */; };
 		56D41B8418EDDDFC0002A51A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B8318EDDDFC0002A51A /* UIKit.framework */; };
@@ -26,8 +29,6 @@
 		56D41BB818EDDF590002A51A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BB718EDDF590002A51A /* RootViewController.m */; };
 		56D41BBB18EDE8920002A51A /* UserColletionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BBA18EDE8920002A51A /* UserColletionViewCell.m */; };
 		56D41BBE18EDEC840002A51A /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BBD18EDEC840002A51A /* InfoViewController.m */; };
-		56D41BC418EE4EBE0002A51A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D41BC318EE4EBE0002A51A /* User.m */; };
-		56D41BC618EE511C0002A51A /* users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56D41BC518EE511C0002A51A /* users.plist */; };
 		56D41BC818EE56950002A51A /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 56D41BC718EE56950002A51A /* users.json */; };
 		56D41BCB18EE61000002A51A /* steve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56D41BC918EE61000002A51A /* steve.jpg */; };
 		56D41BCC18EE61000002A51A /* wave.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56D41BCA18EE61000002A51A /* wave.jpg */; };
@@ -44,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56A024BA18EF5DA2000E397D /* InfoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableView.h; sourceTree = "<group>"; };
+		56A024BB18EF5DA2000E397D /* InfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableView.m; sourceTree = "<group>"; };
+		56A024BD18F08C4A000E397D /* users.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = users.plist; sourceTree = "<group>"; };
+		56A024C218F08F85000E397D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		56A024C318F08F85000E397D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		56D41B7C18EDDDFC0002A51A /* PeekABoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeekABoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D41B7F18EDDDFC0002A51A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		56D41B8118EDDDFC0002A51A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,9 +75,6 @@
 		56D41BBA18EDE8920002A51A /* UserColletionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserColletionViewCell.m; sourceTree = "<group>"; };
 		56D41BBC18EDEC840002A51A /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		56D41BBD18EDEC840002A51A /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		56D41BC218EE4EBE0002A51A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		56D41BC318EE4EBE0002A51A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		56D41BC518EE511C0002A51A /* users.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = users.plist; sourceTree = "<group>"; };
 		56D41BC718EE56950002A51A /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		56D41BC918EE61000002A51A /* steve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = steve.jpg; sourceTree = "<group>"; };
 		56D41BCA18EE61000002A51A /* wave.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wave.jpg; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		56D41B7318EDDDFC0002A51A = {
 			isa = PBXGroup;
 			children = (
+				56A024BD18F08C4A000E397D /* users.plist */,
 				56D41B8718EDDDFC0002A51A /* PeekABoo */,
 				56D41BA418EDDDFC0002A51A /* PeekABooTests */,
 				56D41B7E18EDDDFC0002A51A /* Frameworks */,
@@ -141,9 +145,8 @@
 				56D41B9118EDDDFC0002A51A /* AppDelegate.m */,
 				56D41B9618EDDDFC0002A51A /* Images.xcassets */,
 				56D41B9318EDDDFC0002A51A /* PeekABoo.xcdatamodeld */,
-				56D41BC218EE4EBE0002A51A /* User.h */,
-				56D41BC518EE511C0002A51A /* users.plist */,
-				56D41BC318EE4EBE0002A51A /* User.m */,
+				56A024C218F08F85000E397D /* User.h */,
+				56A024C318F08F85000E397D /* User.m */,
 				56D41B8818EDDDFC0002A51A /* Supporting Files */,
 				56D41BB418EDDE890002A51A /* Storyboard.storyboard */,
 				56D41BC918EE61000002A51A /* steve.jpg */,
@@ -155,6 +158,8 @@
 				56D41BBD18EDEC840002A51A /* InfoViewController.m */,
 				56D41BB918EDE8920002A51A /* UserColletionViewCell.h */,
 				56D41BBA18EDE8920002A51A /* UserColletionViewCell.m */,
+				56A024BA18EF5DA2000E397D /* InfoTableView.h */,
+				56A024BB18EF5DA2000E397D /* InfoTableView.m */,
 			);
 			path = PeekABoo;
 			sourceTree = "<group>";
@@ -265,11 +270,11 @@
 			files = (
 				56D41BC818EE56950002A51A /* users.json in Resources */,
 				56D41BCB18EE61000002A51A /* steve.jpg in Resources */,
+				56A024BE18F08C4A000E397D /* users.plist in Resources */,
 				56D41B8C18EDDDFC0002A51A /* InfoPlist.strings in Resources */,
 				56D41BCC18EE61000002A51A /* wave.jpg in Resources */,
 				56D41B9718EDDDFC0002A51A /* Images.xcassets in Resources */,
 				56D41BB518EDDE890002A51A /* Storyboard.storyboard in Resources */,
-				56D41BC618EE511C0002A51A /* users.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,8 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A024C418F08F85000E397D /* User.m in Sources */,
 				56D41BBB18EDE8920002A51A /* UserColletionViewCell.m in Sources */,
-				56D41BC418EE4EBE0002A51A /* User.m in Sources */,
+				56A024BC18EF5DA2000E397D /* InfoTableView.m in Sources */,
 				56D41B9218EDDDFC0002A51A /* AppDelegate.m in Sources */,
 				56D41BBE18EDEC840002A51A /* InfoViewController.m in Sources */,
 				56D41B8E18EDDDFC0002A51A /* main.m in Sources */,
@@ -491,6 +497,7 @@
 				56D41BB018EDDDFC0002A51A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56D41BB118EDDDFC0002A51A /* Build configuration list for PBXNativeTarget "PeekABooTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +506,7 @@
 				56D41BB318EDDDFC0002A51A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

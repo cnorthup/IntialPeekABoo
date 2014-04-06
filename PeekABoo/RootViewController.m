@@ -12,6 +12,7 @@
 #import "RootViewController.h"
 #import "UserColletionViewCell.h"
 #import "User.h"
+#import "InfoViewController.h"
 
 @interface RootViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
@@ -20,7 +21,7 @@
     NSInteger columns;
     NSArray* usersArray;
     NSArray* photos;
-   
+    NSIndexPath* path;
     
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *myUserCollectionView;
@@ -31,32 +32,33 @@
 
 @implementation RootViewController
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(68, 68);
     zoomInMode = NO;
     photos = @[[UIImage imageNamed:@"wave.jpg"], [UIImage imageNamed:@"steve.jpg"]];
+    
     [self load];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if (zoomInMode) {
+        [self.myUserCollectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    }
 }
 
 -(void)load
 {
     NSFetchRequest* request = [[NSFetchRequest alloc]initWithEntityName:@"User"];
     usersArray = [self.managedObjectContext executeFetchRequest:request error:nil];
-
     
-    //BOOL isFirstRun = ![[NSUserDefaults standardUserDefaults]boolForKey:@"hasRunOnce"];
-    BOOL isFirstRun = YES;
+    BOOL isFirstRun = ![[NSUserDefaults standardUserDefaults]boolForKey:@"hasRunOnce"];
+    
+    // Will pull from Core Data
+    //BOOL isFirstRun = YES;
     if (isFirstRun) {
         //userdefaults get written in coredata and stored
         NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
@@ -65,10 +67,20 @@
         NSURL* url = [[NSBundle mainBundle] URLForResource:@"users" withExtension:@"plist"];
         usersArray = [NSArray arrayWithContentsOfURL:url];
         NSMutableArray *tempArray = [NSMutableArray new];
+        
         for (NSDictionary* currentUser in usersArray) {
             User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
             user.name = currentUser[@"Name"];
-            user.personalEmail = currentUser[@"personalEmail"];
+            user.personalEmail = currentUser[@"Personal Email"];
+            user.cellNumber = currentUser[@"Cell Number"];
+            user.homeAddress = currentUser[@"Home Address"];
+            user.homeNumber = currentUser[@"Home Number"];
+            user.photo = [self getPhotos:[NSURL URLWithString:currentUser[@"Photo"]]];
+            user.workAddress = currentUser[@"Work Address"];
+            user.workEmail = currentUser[@"Work Email"];
+            user.workNumber = currentUser[@"Work Number"];
+            user.blog = currentUser[@"Blog"];
+            user.github = currentUser[@"Github"];
             NSLog(@"%@", user.name);
             [tempArray addObject:user];
         }
@@ -76,14 +88,15 @@
         [self.managedObjectContext save:nil];
     }
     NSLog(@"%lu", (unsigned long)usersArray.count);
+    
 }
 
 #pragma mark -- Collection View Delegate methods
 //section rows
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
+//-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+//{
+//    return 1;
+//}
 //number of items columns
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -91,18 +104,27 @@
 
 }
 //cell
+
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
      UserColletionViewCell* cell = (UserColletionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"UserCollectionCellID" forIndexPath:indexPath];
+    
+    cell.userInfoTableView.userObject = usersArray[indexPath.row];
     cell.backgroundColor = [UIColor darkGrayColor];
-    cell.userImage.image = photos[indexPath.row];
+    //cell.userImage.image = photos[indexPath.row];
+    cell.userImage.image = cell.userInfoTableView.userObject.photo;
     if (!zoomInMode) {
         cell.infoButton.hidden = YES;
+        cell.fakeEditButton.hidden = YES;
     }
     else{
         cell.infoButton.hidden = NO;
+        cell.fakeEditButton.hidden = NO;
+
     }
     //cell.myTableView.frame = CGRectMake(0, 483, cell.myTableView.frame.size.width, 0);
+    
+    [cell.userInfoTableView reloadData];
     return cell;
 }
 
@@ -111,27 +133,55 @@
     zoomInMode =! zoomInMode;
     if (zoomInMode)
     {
-        self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(275, 483);
         
+        self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(275, 483);
+        CGFloat y = (indexPath.row * 489) - 66;
+        CGPoint point = CGPointMake(0, y);
+        [self.myUserCollectionView setContentOffset:point animated:YES];
+
     }
     else
     {
         self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(68, 68);
+        UserColletionViewCell* cell = (UserColletionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        NSLog(@"%f", cell.frame.origin.y);
+//        self.myUserCollectionFlowLayoutView.scrollDirection = UICollectionViewScrollDirectionVertical;
     }
     [self.myUserCollectionView reloadData];
 
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    InfoViewController* ivc = segue.destinationViewController;
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        
+    }
+    else{
+        UserColletionViewCell* cell = (UserColletionViewCell*)[[sender superview] superview];
+        UICollectionView* collectionView = (UICollectionView*)[[[sender superview] superview] superview];
+        NSIndexPath* indexPath = [collectionView indexPathForCell:cell];
+    
+    
+        NSLog(@"%ld", (long)indexPath.row);
+    
+    
+    
+        NSLog(@"%@", [[usersArray objectAtIndex:indexPath.row] class]);
 
-/*
-#pragma mark - Navigation
+        ivc.myUser = [usersArray objectAtIndex:indexPath.row];
+        ivc.editMOC = self.managedObjectContext;
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+        NSLog(@"%@", [ivc.myUser class]);
+    }
+    
 }
-*/
+
+-(UIImage*) getPhotos:(NSURL*) url{
+    
+    NSData* data = [NSData dataWithContentsOfURL:url];
+    UIImage* image = [UIImage imageWithData:data];
+    return image;
+}
 
 @end

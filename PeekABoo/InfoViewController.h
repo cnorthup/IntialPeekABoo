@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+#import "InfoTableView.h"
 
 @interface InfoViewController : UIViewController
+
+@property User* myUser;
+@property NSManagedObjectContext* editMOC;
+
 
 @end

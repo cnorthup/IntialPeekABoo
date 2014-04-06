@@ -10,6 +10,7 @@
 
 @interface WebViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *myWebView;
+
 @end
 
 @implementation WebViewController
@@ -23,9 +24,17 @@
     return self;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    NSURLRequest* request = [NSURLRequest requestWithURL:self.url];
+    NSLog(@"%@",self.url);
+    [self.myWebView loadRequest:request];
+}
+
 - (void)viewDidLoad
 {
+    self.myWebView.delegate = self;
     [super viewDidLoad];
+
     
 }
 

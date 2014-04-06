@@ -12,7 +12,7 @@
 #import "WebViewController.h"
 
 
-@interface InfoViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface InfoViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, UITextFieldDelegate>
 {
     BOOL editModeEnabled;
 }
@@ -22,6 +22,8 @@
 @property User* editedUser;
 @property NSIndexPath* selectedRow;
 @property NSURL* url;
+@property CGRect keyBoardUp;
+@property CGRect keyBoardDown;
 
 
 @end
@@ -35,6 +37,9 @@
     [super viewDidLoad];
     editModeEnabled = NO;
     self.myTableView.scrollEnabled = NO;
+    self.keyBoardUp = CGRectMake(self.myTableView.frame.origin.x, self.myTableView.frame.origin.y, self.myTableView.frame.size.width, self.myTableView.frame.size.height - 216);
+    self.keyBoardDown = self.myTableView.frame;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,22 +48,24 @@
 }
 
 #pragma mark -- 3 Table View Delegate Methods
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-//    if (section == 0) {
-//        return 2;
-//    }
-//    else if(section == 1){
-//        return 3;
-//    }
-//    else{
-//        return 2;
-//    }
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self.myTableView setFrame:self.keyBoardUp];
+    [self.myTableView reloadData];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [self.myTableView setFrame:self.keyBoardDown];
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
     return 11;
 }
-//cell
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCellID"];
     InfoTableView *tv = (InfoTableView *)tableView;
     tv.userObject = self.editedUser;
@@ -112,66 +119,67 @@
         default:
             break;
     }
-    
-//    switch (indexPath.section) {
-//        case 0:
-//            switch (indexPath.row) {
-//                case 0:
-//                    cell.textLabel.text = tv.userObject.name;
-//                    break;
-//                    
-//                default:
-//                    break;
-//            }
-//            break;
-//            
-//        case 1:
-//            switch (indexPath.row) {
-//                case 0:
-//                    cell.textLabel.text = tv.userObject.personalEmail;
-//                    break;
-//                    
-//                default:
-//                    break;
-//            }
-//            break;
-//            
-//        default:
-//            break;
-//    }
-    
-    
-    
     return cell;
 }
-//header in section
-//-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    if (section == 0) {
-//        return @"Emails";
-//    }
-//    else if(section == 1){
-//        return @"PhoneNumbers";
-//    }
-//    else{
-//        return @"Address";
-//    }
-//}
 
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 3;
-//}
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    
+    if (self = [super initWithCoder:aDecoder]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyBoardShown:)
+                                                     name:UIKeyboardDidShowNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(keyBoardHidden:)
+                                                     name:UIKeyboardDidHideNotification
+                                                   object:nil];
+    }
+    return self;
+}
+
+
+-(void)keyBoardShown:(NSNotification*) notification{
+    [self.myTableView setFrame:self.keyBoardUp];
+    [self.myTableView reloadData];
+    [self.myTableView scrollToRowAtIndexPath:self.selectedRow atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
+    
+}
+
+-(void)keyBoardHidden:(NSNotification*) notification{
+    [self.myTableView setFrame:self.keyBoardDown];
+    [self.myTableView reloadData];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    NSLog(@"%f", self.myTableView.contentOffset.y);
+    UITableViewCell* cell = [self.myTableView cellForRowAtIndexPath:self.selectedRow];
+    if (self.myTableView.contentOffset.y < 0) {
+        self.myToolBar.center = CGPointMake(cell.center.x, (cell.center.y + fabsf(self.myTableView.contentOffset.y)));
+    }
+    else{
+        self.myToolBar.center = CGPointMake(cell.center.x, cell.center.y - fabsf(self.myTableView.contentOffset.y));
+    }
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-
+    
     if (editModeEnabled) {
+        self.myTableView.scrollEnabled = YES;
         if (indexPath.row != 10) {
             self.selectedRow = indexPath;
+            NSLog(@"%f", cell.frame.origin.y );
+            NSLog(@"%f", cell.frame.origin.y-self.view.frame.origin.y);
             self.myToolBar.hidden = NO;
-            self.myToolBar.center = CGPointMake(cell.center.x, cell.center.y + 64);
+            if (self.myTableView.contentOffset.y < 0) {
+                self.myToolBar.center = CGPointMake(cell.center.x, (cell.center.y + fabsf(self.myTableView.contentOffset.y)));
+            }
+            else{
+                self.myToolBar.center = CGPointMake(cell.center.x, cell.center.y - fabsf(self.myTableView.contentOffset.y));
+            }
             self.myTextField.text = cell.textLabel.text;
         }
         else{
@@ -183,19 +191,25 @@
     }
     else{
         if (indexPath.row == 3) {
+            [self.myTextField endEditing:YES];
             [self performSegueWithIdentifier:@"AddressSegue" sender:cell];
+            
         }
         else if(indexPath.row == 4){
+            [self.myTextField endEditing:YES];
             [self performSegueWithIdentifier:@"AddressSegue" sender:cell];
         }
         else if (indexPath.row == 8){
-            [self performSegueWithIdentifier:@"WebSegue" sender:cell];
+            [self.myTextField endEditing:YES];
             self.url = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/%@", cell.textLabel.text]];
+            [self performSegueWithIdentifier:@"WebSegue" sender:cell];
 
         }
         else if (indexPath.row == 9){
-            [self performSegueWithIdentifier:@"WebSegue" sender:cell];
+            [self.myTextField endEditing:YES];
             self.url = [NSURL URLWithString:cell.textLabel.text];
+            [self performSegueWithIdentifier:@"WebSegue" sender:cell];
+
         }
     }
 }
@@ -281,17 +295,18 @@
     
     UITableViewCell* cell = (UITableViewCell*) sender;
     if ([segue.identifier isEqualToString:@"PhotoSegue"]) {
+        [self.myTextField endEditing:YES];
         PhotoViewController* pVC = segue.destinationViewController;
         pVC.photo = self.editedUser.photo;
     }
     else if ([segue.identifier isEqualToString:@"WebSegue"]){
+        [self.myTextField endEditing:YES];
         WebViewController* wVC = segue.destinationViewController;
         wVC.url = self.url;
-        
     }
     else if ([segue.identifier isEqualToString:@"AddUserUnwind"]){
+        [self.myTextField endEditing:YES];
         self.myUser = self.editedUser;
-        NSLog(@"%@", self.editedUser);
     }
     else{
     MapViewController* mVC = segue.destinationViewController;

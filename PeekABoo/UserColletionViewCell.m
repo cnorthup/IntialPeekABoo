@@ -57,23 +57,13 @@
     [header.textLabel setOpaque:NO];
 }
 
-//rows
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     return 10;
-//    if (section == 0) {
-//        return 2;
-//    }
-//    else if(section == 1){
-//        return 3;
-//    }
-//    else{
-//        return 2;
-//    }
 }
-//cell
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"OverlayInfoCellID"];
     InfoTableView *tv = (InfoTableView *)tableView;
     
@@ -127,8 +117,6 @@
         default:
             break;
     }
-//    cell.textLabel.text = tv.userObject.name;
-//    cell.detailTextLabel.text = tv.userObject.personalEmail;
     NSLog(@"%@", tv.userObject.personalEmail);
         return cell;
 }
@@ -146,28 +134,6 @@
     cell.textLabel.textColor = [UIColor blackColor];
     cell.detailTextLabel.textColor = [UIColor blackColor];
 }
-//header in section
-//-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    
-////    if (section == 0) {
-////        
-////        return @"Emails";
-////    }
-////    else if(section == 1){
-////        
-////        return @"PhoneNumbers";
-////    }
-////    else{
-////        
-////        return @"Address";
-////    }
-//}
-
-//-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    //return 3;
-//}
 
 
 @end

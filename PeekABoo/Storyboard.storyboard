@@ -103,7 +103,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="zwT-vl-hrQ" kind="push" id="hyF-0f-g9X"/>
+                                                        <segue destination="zwT-vl-hrQ" kind="push" customClass="FlipPushSegue" id="hyF-0f-g9X"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

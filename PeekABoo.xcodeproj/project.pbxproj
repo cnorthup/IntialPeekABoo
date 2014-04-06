@@ -10,6 +10,7 @@
 		56A024BC18EF5DA2000E397D /* InfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024BB18EF5DA2000E397D /* InfoTableView.m */; };
 		56A024BE18F08C4A000E397D /* users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56A024BD18F08C4A000E397D /* users.plist */; };
 		56A024C418F08F85000E397D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024C318F08F85000E397D /* User.m */; };
+		56A024CA18F0D7CD000E397D /* FlipPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024C918F0D7CD000E397D /* FlipPushSegue.m */; };
 		56D41B8018EDDDFC0002A51A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B7F18EDDDFC0002A51A /* Foundation.framework */; };
 		56D41B8218EDDDFC0002A51A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B8118EDDDFC0002A51A /* CoreGraphics.framework */; };
 		56D41B8418EDDDFC0002A51A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B8318EDDDFC0002A51A /* UIKit.framework */; };
@@ -50,6 +51,8 @@
 		56A024BD18F08C4A000E397D /* users.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = users.plist; sourceTree = "<group>"; };
 		56A024C218F08F85000E397D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		56A024C318F08F85000E397D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		56A024C818F0D7CD000E397D /* FlipPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipPushSegue.h; sourceTree = "<group>"; };
+		56A024C918F0D7CD000E397D /* FlipPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipPushSegue.m; sourceTree = "<group>"; };
 		56D41B7C18EDDDFC0002A51A /* PeekABoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeekABoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D41B7F18EDDDFC0002A51A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		56D41B8118EDDDFC0002A51A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 				56A024C318F08F85000E397D /* User.m */,
 				56D41B8818EDDDFC0002A51A /* Supporting Files */,
 				56D41BB418EDDE890002A51A /* Storyboard.storyboard */,
+				56A024C818F0D7CD000E397D /* FlipPushSegue.h */,
+				56A024C918F0D7CD000E397D /* FlipPushSegue.m */,
 				56D41BC918EE61000002A51A /* steve.jpg */,
 				56D41BCA18EE61000002A51A /* wave.jpg */,
 				56D41BB618EDDF590002A51A /* RootViewController.h */,
@@ -298,6 +303,7 @@
 				56A024BC18EF5DA2000E397D /* InfoTableView.m in Sources */,
 				56D41B9218EDDDFC0002A51A /* AppDelegate.m in Sources */,
 				56D41BBE18EDEC840002A51A /* InfoViewController.m in Sources */,
+				56A024CA18F0D7CD000E397D /* FlipPushSegue.m in Sources */,
 				56D41B8E18EDDDFC0002A51A /* main.m in Sources */,
 				56D41BB818EDDF590002A51A /* RootViewController.m in Sources */,
 				56D41B9518EDDDFC0002A51A /* PeekABoo.xcdatamodeld in Sources */,

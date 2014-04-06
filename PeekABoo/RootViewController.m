@@ -174,6 +174,8 @@
 
         NSLog(@"%@", [ivc.myUser class]);
     }
+    [UIView animateWithDuration:2.0 animations:^{
+    }];
     
 }
 

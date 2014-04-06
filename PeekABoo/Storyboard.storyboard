@@ -232,11 +232,69 @@
                         <outlet property="myTableView" destination="AsJ-33-1Kl" id="uQs-cS-CkM"/>
                         <outlet property="myTextField" destination="OTX-bv-s12" id="mI6-fd-6kn"/>
                         <outlet property="myToolBar" destination="rSp-z2-flf" id="i0j-Lr-EdI"/>
+                        <segue destination="acq-Jk-jbG" kind="push" identifier="AddressSegue" id="KoR-Pq-tZa"/>
+                        <segue destination="ak9-sc-IUh" kind="push" identifier="PhotoSegue" id="ydI-xP-P6E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWX-MR-crV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="435" y="31"/>
+            <point key="canvasLocation" x="418" y="-14"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="LsI-Gd-U04">
+            <objects>
+                <viewController id="ak9-sc-IUh" customClass="PhotoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bt9-oK-Qkl"/>
+                        <viewControllerLayoutGuide type="bottom" id="da6-jb-Tkn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MDW-xO-2R3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12a-Ii-xc0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oq5-ae-p0g"/>
+                    <connections>
+                        <outlet property="userImage" destination="12a-Ii-xc0" id="WKS-K3-lqc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NSP-jZ-Dpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="874" y="517"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="rdO-mG-j3e">
+            <objects>
+                <viewController id="acq-Jk-jbG" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5fI-7k-tnD"/>
+                        <viewControllerLayoutGuide type="bottom" id="mlD-2k-2oW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xAZ-9x-5ny">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uiQ-TF-B1P">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="T2A-97-Mej"/>
+                    <connections>
+                        <outlet property="mapView" destination="uiQ-TF-B1P" id="t1y-gR-Z4g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4rp-BA-6he" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="-529"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="MCo-mH-zpk">
@@ -316,7 +374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1m-BC-ivH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="-51"/>
+            <point key="canvasLocation" x="1217" y="814"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="e6q-Bg-Wv7">

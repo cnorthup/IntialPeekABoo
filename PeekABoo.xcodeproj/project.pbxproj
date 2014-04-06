@@ -11,6 +11,8 @@
 		56A024BE18F08C4A000E397D /* users.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56A024BD18F08C4A000E397D /* users.plist */; };
 		56A024C418F08F85000E397D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024C318F08F85000E397D /* User.m */; };
 		56A024CA18F0D7CD000E397D /* FlipPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024C918F0D7CD000E397D /* FlipPushSegue.m */; };
+		56A024CD18F1C319000E397D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024CC18F1C319000E397D /* MapViewController.m */; };
+		56A024D018F1D0F5000E397D /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A024CF18F1D0F5000E397D /* PhotoViewController.m */; };
 		56D41B8018EDDDFC0002A51A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B7F18EDDDFC0002A51A /* Foundation.framework */; };
 		56D41B8218EDDDFC0002A51A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B8118EDDDFC0002A51A /* CoreGraphics.framework */; };
 		56D41B8418EDDDFC0002A51A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D41B8318EDDDFC0002A51A /* UIKit.framework */; };
@@ -53,6 +55,10 @@
 		56A024C318F08F85000E397D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		56A024C818F0D7CD000E397D /* FlipPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipPushSegue.h; sourceTree = "<group>"; };
 		56A024C918F0D7CD000E397D /* FlipPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipPushSegue.m; sourceTree = "<group>"; };
+		56A024CB18F1C319000E397D /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		56A024CC18F1C319000E397D /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		56A024CE18F1D0F5000E397D /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		56A024CF18F1D0F5000E397D /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		56D41B7C18EDDDFC0002A51A /* PeekABoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeekABoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D41B7F18EDDDFC0002A51A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		56D41B8118EDDDFC0002A51A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -152,6 +158,10 @@
 				56A024C318F08F85000E397D /* User.m */,
 				56D41B8818EDDDFC0002A51A /* Supporting Files */,
 				56D41BB418EDDE890002A51A /* Storyboard.storyboard */,
+				56A024CE18F1D0F5000E397D /* PhotoViewController.h */,
+				56A024CF18F1D0F5000E397D /* PhotoViewController.m */,
+				56A024CB18F1C319000E397D /* MapViewController.h */,
+				56A024CC18F1C319000E397D /* MapViewController.m */,
 				56A024C818F0D7CD000E397D /* FlipPushSegue.h */,
 				56A024C918F0D7CD000E397D /* FlipPushSegue.m */,
 				56D41BC918EE61000002A51A /* steve.jpg */,
@@ -305,7 +315,9 @@
 				56D41BBE18EDEC840002A51A /* InfoViewController.m in Sources */,
 				56A024CA18F0D7CD000E397D /* FlipPushSegue.m in Sources */,
 				56D41B8E18EDDDFC0002A51A /* main.m in Sources */,
+				56A024CD18F1C319000E397D /* MapViewController.m in Sources */,
 				56D41BB818EDDF590002A51A /* RootViewController.m in Sources */,
+				56A024D018F1D0F5000E397D /* PhotoViewController.m in Sources */,
 				56D41B9518EDDDFC0002A51A /* PeekABoo.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@
 @implementation FlipPushSegue
 - (void)perform
 {
-   // [[[self sourceViewController] navigationController] pushViewController:[self   destinationViewController] animated:NO];
+    //[[[self sourceViewController] navigationController] pushViewController:[self   destinationViewController] animated:NO];
     UIViewController *src = (UIViewController *) self.sourceViewController;
     UIViewController *dst = (UIViewController *) self.destinationViewController;
     
@@ -21,7 +21,5 @@
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:src.view.superview cache:YES];
     [UIView commitAnimations];
     
-    [[self sourceViewController] navigationController:(UINavigationController*)src
-                                didShowViewController:dst animated:YES];
 }
 @end

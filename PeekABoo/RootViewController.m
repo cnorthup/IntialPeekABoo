@@ -35,7 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.myUserCollectionFlowLayoutView.itemSize = CGSizeMake(68, 68);
     zoomInMode = NO;
     photos = @[[UIImage imageNamed:@"wave.jpg"], [UIImage imageNamed:@"steve.jpg"]];
@@ -53,12 +52,13 @@
 -(void)load
 {
     NSFetchRequest* request = [[NSFetchRequest alloc]initWithEntityName:@"User"];
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    request.sortDescriptors = @[sortDescriptor];
     usersArray = [self.managedObjectContext executeFetchRequest:request error:nil];
     
     BOOL isFirstRun = ![[NSUserDefaults standardUserDefaults]boolForKey:@"hasRunOnce"];
     
     // Will pull from Core Data
-    //BOOL isFirstRun = YES;
     if (isFirstRun) {
         //userdefaults get written in coredata and stored
         NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
@@ -84,7 +84,20 @@
             NSLog(@"%@", user.name);
             [tempArray addObject:user];
         }
-        usersArray = tempArray;
+        usersArray = [tempArray sortedArrayUsingComparator:^NSComparisonResult(User* obj1, User* obj2) {
+            NSString* name1 = obj1.name;
+            NSString* name2 = obj2.name;
+            if ([name1 compare:name2 options:NSCaseInsensitiveSearch] == NSOrderedAscending) {
+                return NSOrderedAscending;
+            }
+            else if([name1 compare:name2 options:NSCaseInsensitiveSearch] == NSOrderedDescending){
+                return NSOrderedDescending;
+            }
+            else{
+                return NSOrderedSame;
+            }
+            
+        }];
         [self.managedObjectContext save:nil];
     }
     NSLog(@"%lu", (unsigned long)usersArray.count);
@@ -161,18 +174,9 @@
         UserColletionViewCell* cell = (UserColletionViewCell*)[[sender superview] superview];
         UICollectionView* collectionView = (UICollectionView*)[[[sender superview] superview] superview];
         NSIndexPath* indexPath = [collectionView indexPathForCell:cell];
-    
-    
-        NSLog(@"%ld", (long)indexPath.row);
-    
-    
-    
-        NSLog(@"%@", [[usersArray objectAtIndex:indexPath.row] class]);
 
         ivc.myUser = [usersArray objectAtIndex:indexPath.row];
         ivc.editMOC = self.managedObjectContext;
-
-        NSLog(@"%@", [ivc.myUser class]);
     }
     [UIView animateWithDuration:2.0 animations:^{
     }];

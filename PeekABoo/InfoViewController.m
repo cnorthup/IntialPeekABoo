@@ -7,6 +7,8 @@
 //
 
 #import "InfoViewController.h"
+#import "MapViewController.h"
+#import "PhotoViewController.h"
 
 
 @interface InfoViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
@@ -17,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *myToolBar;
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
 @property User* editedUser;
+@property NSIndexPath* saveDiSelectedIndex;
+@property NSIndexPath* saveDoneIndex;
 
 
 @end
@@ -49,7 +53,7 @@
 //    else{
 //        return 2;
 //    }
-    return 10;
+    return 11;
 }
 //cell
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,6 +102,10 @@
         case 9:
             cell.textLabel.text = tv.userObject.blog;
             cell.detailTextLabel.text = @"Blog";
+            break;
+        case 10:
+            cell.textLabel.text = @"Photo";
+            cell.detailTextLabel.text = @"";
             break;
             
         default:
@@ -155,57 +163,129 @@
 //}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+
     if (editModeEnabled) {
-        self.myToolBar.hidden = NO;
-        UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-        self.myToolBar.center = CGPointMake(cell.center.x, cell.center.y + 64);
-        self.myTextField.text = cell.textLabel.text;
+        if (indexPath.row != 10) {
+            self.saveDoneIndex = indexPath;
+            self.myToolBar.hidden = NO;
+            self.myToolBar.center = CGPointMake(cell.center.x, cell.center.y + 64);
+            self.myTextField.text = cell.textLabel.text;
+        }
+        else{
+            self.myToolBar.hidden = YES;
+
+            [self performSegueWithIdentifier:@"PhotoSegue" sender:cell];
+        }
         
     }
+    else{
+        if (indexPath.row == 3) {
+            [self performSegueWithIdentifier:@"AddressSegue" sender:cell];
+        }
+        else if(indexPath.row == 4){
+            [self performSegueWithIdentifier:@"AddressSegue" sender:cell];
+        }
+    }
+}
+
+-(void)save:(NSIndexPath*) indexPath{
+    
+        self.editedUser = self.myUser;
+        
+        switch (indexPath.row) {
+            case 0:
+                self.editedUser.name = self.myTextField.text;
+                break;
+            case 1:
+                self.editedUser.workEmail = self.myTextField.text;
+                break;
+            case 2:
+                self.editedUser.personalEmail = self.myTextField.text;
+                break;
+            case 3:
+                self.editedUser.workAddress = self.myTextField.text;
+                break;
+            case 4:
+                self.editedUser.homeAddress = self.myTextField.text;
+                break;
+            case 5:
+                self.editedUser.cellNumber = self.myTextField.text;
+                break;
+            case 6:
+                self.editedUser.workNumber = self.myTextField.text;
+                break;
+            case 7:
+                self.editedUser.homeNumber = self.myTextField.text;
+                break;
+            case 8:
+                self.editedUser.github = self.myTextField.text;
+                break;
+            case 9:
+                self.editedUser.blog = self.myTextField.text;
+                break;
+                
+                
+            default:
+                break;
+        }
+        self.myUser = self.editedUser;
+        [self.myTableView reloadData];
+        [self.editMOC save:nil];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.editedUser = self.myUser;
-    
-    switch (indexPath.row) {
-        case 0:
-            self.editedUser.name = self.myTextField.text;
-            break;
-        case 1:
-            self.editedUser.workEmail = self.myTextField.text;
-            break;
-        case 2:
-            self.editedUser.personalEmail = self.myTextField.text;
-            break;
-        case 3:
-            self.editedUser.workAddress = self.myTextField.text;
-            break;
-        case 4:
-            self.editedUser.homeAddress = self.myTextField.text;
-            break;
-        case 5:
-            self.editedUser.cellNumber = self.myTextField.text;
-            break;
-        case 6:
-            self.editedUser.workNumber = self.myTextField.text;
-            break;
-        case 7:
-            self.editedUser.homeNumber = self.myTextField.text;
-            break;
-        case 8:
-            self.editedUser.github = self.myTextField.text;
-            break;
-        case 9:
-            self.editedUser.blog = self.myTextField.text;
-            break;
-            
-        default:
-            break;
+    if (editModeEnabled) {
+        self.saveDiSelectedIndex = indexPath;
+        [self save:self.saveDiSelectedIndex];
     }
-    self.myUser = self.editedUser;
-    [self.myTableView reloadData];
-    [self.editMOC save:nil];
+    
+//    if(editModeEnabled){
+//        self.editedUser = self.myUser;
+//    
+//        switch (indexPath.row) {
+//            case 0:
+//                self.editedUser.name = self.myTextField.text;
+//                break;
+//            case 1:
+//                self.editedUser.workEmail = self.myTextField.text;
+//                break;
+//            case 2:
+//                self.editedUser.personalEmail = self.myTextField.text;
+//                break;
+//            case 3:
+//                self.editedUser.workAddress = self.myTextField.text;
+//                break;
+//            case 4:
+//                self.editedUser.homeAddress = self.myTextField.text;
+//                break;
+//            case 5:
+//                self.editedUser.cellNumber = self.myTextField.text;
+//                break;
+//            case 6:
+//                self.editedUser.workNumber = self.myTextField.text;
+//                break;
+//            case 7:
+//                self.editedUser.homeNumber = self.myTextField.text;
+//                break;
+//            case 8:
+//                self.editedUser.github = self.myTextField.text;
+//                break;
+//            case 9:
+//                self.editedUser.blog = self.myTextField.text;
+//                break;
+//                
+//            
+//            default:
+//                break;
+//        }
+//        self.myUser = self.editedUser;
+//        [self.myTableView reloadData];
+//        [self.editMOC save:nil];
+//    }
 }
 
 
@@ -231,6 +311,7 @@
     {
         self.myToolBar.hidden = YES;
         self.myUser = self.editedUser;
+        [self save:self.saveDoneIndex];
         [self.myTableView reloadData];
         [self.editMOC save:nil];
         [realEditButton setTitle:@"Edit"];
@@ -238,6 +319,18 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    UITableViewCell* cell = (UITableViewCell*) sender;
+    if ([segue.identifier isEqualToString:@"PhotoSegue"]) {
+        PhotoViewController* pVC = segue.destinationViewController;
+        pVC.photo = self.editedUser.photo;
+    }
+    else{
+    MapViewController* mVC = segue.destinationViewController;
+    mVC.address = cell.textLabel.text;
+    }
+}
 
 
 

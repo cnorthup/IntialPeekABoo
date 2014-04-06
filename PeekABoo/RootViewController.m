@@ -14,7 +14,7 @@
 #import "User.h"
 #import "InfoViewController.h"
 
-@interface RootViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface RootViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 {
     BOOL zoomInMode;
     NSInteger rows;
@@ -39,7 +39,6 @@
     zoomInMode = NO;
     photos = @[[UIImage imageNamed:@"wave.jpg"], [UIImage imageNamed:@"steve.jpg"]];
     
-    [self load];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -47,6 +46,8 @@
     if (zoomInMode) {
         [self.myUserCollectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }
+    [self load];
+
 }
 
 -(void)load
@@ -100,6 +101,7 @@
         }];
         [self.managedObjectContext save:nil];
     }
+    [self.myUserCollectionView reloadData];
     NSLog(@"%lu", (unsigned long)usersArray.count);
     
 }
@@ -164,13 +166,28 @@
 
 }
 
+-(IBAction)addUser:(UIStoryboardSegue*)segue sender:(id)sender{
+    InfoViewController* iVC = segue.sourceViewController;
+    User* newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    newUser = iVC.myUser;
+    [self.managedObjectContext save:nil];
+    [self load];
+    
+    
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     InfoViewController* ivc = segue.destinationViewController;
     if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        ivc.saveButton.hidden = NO;
+        User* newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+        ivc.myUser = newUser;
+        
         
     }
     else{
+        ivc.saveButton.hidden = YES;
         UserColletionViewCell* cell = (UserColletionViewCell*)[[sender superview] superview];
         UICollectionView* collectionView = (UICollectionView*)[[[sender superview] superview] superview];
         NSIndexPath* indexPath = [collectionView indexPathForCell:cell];

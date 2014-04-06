@@ -29,6 +29,7 @@
 
 -(void)viewDidLoad{
     infoShown = NO;
+    [self reloadInputViews];
     //NSFetchRequest* request = [[NSFetchRequest alloc]initWithEntityName:@"User"];
     
     

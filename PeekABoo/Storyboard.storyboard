@@ -93,11 +93,11 @@
                                                     </connections>
                                                 </tableView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5E-ny-fkm">
-                                                    <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                                    <rect key="frame" x="20" y="10" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="MPx-ua-t2A"/>
                                                         <constraint firstAttribute="height" constant="30" id="dnj-uS-GeE"/>
+                                                        <constraint firstAttribute="width" constant="46" id="vJw-lV-hKW"/>
                                                     </constraints>
                                                     <state key="normal" title="Edit">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -141,7 +141,7 @@
                     <navigationItem key="navigationItem" id="zIz-VS-kil">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="yv3-Zi-8wg">
                             <connections>
-                                <segue destination="zwT-vl-hrQ" kind="push" id="Maw-Z0-fd0"/>
+                                <segue destination="zwT-vl-hrQ" kind="push" identifier="AddSegue" id="Maw-Z0-fd0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -152,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mAf-U9-EDV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9" y="31"/>
+            <point key="canvasLocation" x="15" y="-14"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="Ndz-RG-ymY">
@@ -210,11 +210,16 @@
                                 <items>
                                     <barButtonItem style="plain" id="am9-Xv-Kgg">
                                         <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="OTX-bv-s12">
-                                            <rect key="frame" x="16" y="7" width="257" height="30"/>
+                                            <rect key="frame" x="16" y="7" width="234" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
                                         </textField>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="save" id="iUu-IY-J8n">
+                                        <connections>
+                                            <action selector="onSaveButtonPressed:" destination="zwT-vl-hrQ" id="l6C-Xg-kr2"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -222,6 +227,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="mqB-DK-zWH">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gir-hp-rz9">
+                            <rect key="frame" x="143" y="6" width="34" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="Save">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <segue destination="mUN-wN-UdZ" kind="unwind" identifier="AddUserUnwind" unwindAction="addUser:sender:" id="foq-SO-Ntj"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Fh1-Dk-m4w">
                             <connections>
                                 <action selector="onEditPressed:" destination="zwT-vl-hrQ" id="WfZ-eB-GtF"/>
@@ -232,13 +249,45 @@
                         <outlet property="myTableView" destination="AsJ-33-1Kl" id="uQs-cS-CkM"/>
                         <outlet property="myTextField" destination="OTX-bv-s12" id="mI6-fd-6kn"/>
                         <outlet property="myToolBar" destination="rSp-z2-flf" id="i0j-Lr-EdI"/>
+                        <outlet property="saveButton" destination="Gir-hp-rz9" id="oef-wV-Etj"/>
                         <segue destination="acq-Jk-jbG" kind="push" identifier="AddressSegue" id="KoR-Pq-tZa"/>
                         <segue destination="ak9-sc-IUh" kind="push" identifier="PhotoSegue" id="ydI-xP-P6E"/>
+                        <segue destination="x7T-7C-4Xh" kind="push" identifier="WebSegue" id="hw4-vh-Tgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWX-MR-crV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="mUN-wN-UdZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="418" y="-14"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Yey-VH-bFB">
+            <objects>
+                <viewController id="x7T-7C-4Xh" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dFK-r6-9rq"/>
+                        <viewControllerLayoutGuide type="bottom" id="HxZ-pN-vFm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aDt-q6-lOn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbu-eN-S70">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2vf-pT-I0L"/>
+                    <connections>
+                        <outlet property="myWebView" destination="kbu-eN-S70" id="EEe-Kh-g0Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ig-y6-LYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1035" y="127"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="LsI-Gd-U04">
@@ -253,9 +302,39 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12a-Ii-xc0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="385"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGm-oT-mhq">
+                                <rect key="frame" x="228" y="424" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Take Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTakePhotoButtonPressed:" destination="ak9-sc-IUh" eventType="touchUpInside" id="zeE-Fn-S3W"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhY-HI-X7U">
+                                <rect key="frame" x="217" y="507" width="88" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSelectPhotoButtonPressed:" destination="ak9-sc-IUh" eventType="touchUpInside" id="AXB-CJ-sOV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkN-Pm-3fm">
+                                <rect key="frame" x="55" y="455" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Comfirm">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YUI-BJ-Lx6" kind="unwind" unwindAction="addPhoto:sender:" id="ovZ-ng-f52"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -265,8 +344,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSP-jZ-Dpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="YUI-BJ-Lx6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="874" y="517"/>
+            <point key="canvasLocation" x="857" y="793"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="rdO-mG-j3e">
@@ -421,6 +501,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hyF-0f-g9X"/>
+        <segue reference="Maw-Z0-fd0"/>
     </inferredMetricsTieBreakers>
 </document>

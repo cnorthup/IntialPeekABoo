@@ -14,6 +14,7 @@
 
 @property User* myUser;
 @property NSManagedObjectContext* editMOC;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 
 @end

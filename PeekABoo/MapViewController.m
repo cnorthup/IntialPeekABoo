@@ -32,15 +32,6 @@
     
     [super viewDidLoad];
     
-//    CLLocationCoordinate2D addressCoordinate;
-//    MKCoordinateSpan addressSpan = MKCoordinateSpanMake(.01, .01);
-//    MKCoordinateRegion addressRegion = MKCoordinateRegionMake(addressCoordinate, addressSpan);
-//    
-//    self.addressAnnotation = [MKPointAnnotation new];
-//    
-//    self.addressAnnotation.coordinate = addressCoordinate;
-//    [self.mapView addAnnotation:self.addressAnnotation];
-    
     CLGeocoder* geoCoder = [CLGeocoder new];
     [geoCoder geocodeAddressString:self.address completionHandler:^(NSArray *placemarks, NSError *error) {
         
